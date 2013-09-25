@@ -1,0 +1,7 @@
+﻿.good-code{
+    box-shadow: 0 0 6px rgba(0, 255, 10, 0.57) !important;
+}
+
+.bad-code{
+    box-shadow: 0 0 6px rgba(255, 0, 0, 0.57) !important;
+}

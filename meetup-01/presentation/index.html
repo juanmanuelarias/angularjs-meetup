@@ -1,0 +1,397 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>AngularJS - Meetup Buenos Aires</title>
+
+    <meta name="description" content="Presentacion para el meetup AngularJS Buenos Aires">
+    <meta name="author" content="Juan Manuel Arias">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+    <link href="css/custom.css" rel="stylesheet" />
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper') + '.css" type="text/css" media="print">');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body ng-app>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>AngularJS</h1>
+                <img src="/img/logo.png" alt="Angular">
+                <h3>Comunidad Buenos Aires</h3>
+                <p>
+                    <small>by <a href="https://twitter.com/juanma_ari">@juanma_ari</a> | <a href="http://www.meetup.com/AngularJS-Buenos-Aires/">meetup</a></small>
+                </p>
+            </section>
+
+            <section>
+                <h2>El espíritu de este meetup</h2>
+                <p>Compartir experiencias, intercambiar ideas, generar un espacio de interacción profesional...</p>
+                <p class="fragment"><em>... y también tomar cerveza!</em></p>
+            </section>
+
+            <section>
+                <h2>Backlog de Ideas</h2>
+                <ol>
+                    <li>
+                        Conociendo AngularJS y su Comunidad
+                        <ul>
+                            <li>Cliente Side vs Hybrid Solutions</li>
+                            <li>Arquitectura de AngularJS</li>
+                            <li>Features &amp; Workarounds</li>
+                        </ul>
+                    </li>
+                    <li>MEAN Stack y otras tecnologías backend</li>
+                    <li>Seguridad - OAuth</li>
+                    <li>De la idea al Deploy</li>
+                    <li>...</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Presentación</h2>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Frontend</h2>
+                    <ol>
+                        <li class="fragment">JavaScript puro</li>
+                        <li class="fragment">JQuery</li>
+                        <li class="fragment">Bindings</li>
+                        <li class="fragment">MVC</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h3>JavaScript puro</h3>
+                    <pre><code data-trim>
+&lt;h1 id="title"&gt;&lt;/h1&gt
+					    </code></pre>
+
+                    <pre><code data-trim>
+&lt;script&gt;
+    var title = document.getElementById('title');
+    title.innerText = 'Hola Mundo';
+&lt;/script&gt;
+                        </code></pre>
+                    <aside class="notes">
+                        Problemas cross Browser
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>JQuery</h3>
+                    <pre><code data-trim>
+&lt;h1 id="title"&gt;&lt;/h1&gt
+                        </code></pre>
+
+                    <pre><code data-trim>
+&lt;script&gt;
+    ('#title').text('Hola Mundo');
+&lt;/script&gt;
+                        </code></pre>
+                    <aside class="notes">
+                        Código imperativo, difícil de mantener en el tiempo
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Bindings</h3>
+                    <pre><code data-trim>
+&lt;h1 data-bind="text: name"&gt;&lt;/h1&gt
+					    </code></pre>
+
+                    <pre><code data-trim>
+&lt;script&gt;
+    var ViewModel = function(name){
+        this.name = ko.observable(name);
+    }
+    ko.applyBindings(new ViewModel("Juan"));
+&lt;/script&gt;
+					</code></pre>
+                    <aside class="notes">
+                        Si bien nos ayuda a construir SPA, no nos ayuda mucho en SoC
+                    </aside>
+                </section>
+
+                <section data-background="#8c4738" data-background-transition="slide">
+                    <h2>Problemas comunes</h2>
+                    <ul>
+                        <li>Código Imperativo</li>
+                        <li>Manipulación del DOM mezclada con lógica de comportamiento</li>
+                        <li>Dificultad a la hora de testear UI</li>
+                        <li>Integración de múltiples librerías</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>MVC</h3>
+                    <pre><code data-trim ng-non-bindable>
+&lt;h1&gt;{{persona.nombre}}&lt;/h1&gt;
+                    </code></pre>
+
+                    <pre><code data-trim>
+&lt;script&gt;
+    $scope.persona = { nombre: 'Juan' };
+&lt;/script&gt;
+					</code></pre>
+                </section>
+            </section>
+
+            <section>
+                <h2>¿Que es AngularJS?</h2>
+                <ul>
+                    <li>Framework JavaScript Open Source</li>
+                    <li>Aplica el patrón MVC</li>
+                    <li>Es desarrollado por Google</li>
+                </ul>
+            </section>
+
+            <section data-background="#4d7e65" data-background-transition="slide">
+                <h2>Principales ventajas</h2>
+                <ul>
+                    <li>Aplica Dependency Injection</li>
+                    <li>Facilita la construcción de SPA con el uso de rutas y bindings</li>
+                    <li>Permite desacoplar la manipulación del DOM de la lógica</li>
+                    <li>Extiende el vocabulario HTML</li>
+                    <li>Buenas prácticas de Inyección de Dependencias</li>
+                    <li>Facilidad de realizar Testing Unitario y E2E</li>
+                    <li>Los objetos JS no necesitan una estructura específica para Getters y Setters</li>
+                </ul>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Algunos ejemplos</h2>
+                </section>
+                <section>
+                    <h2>Binding Simple</h2>
+                    <pre><code data-trim ng-non-bindable>
+&lt;div ng-app&gt;
+    &lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;
+    &lt;h2&gt;Hola {{name}}&lt;/h2&gt;
+&lt;/div&gt;
+                    </code></pre>
+                    <div>
+                        <input type="text" ng-model="name" />
+                        <h3>Hola {{name}}</h3>
+                    </div>
+                </section>
+                <section>
+                    <h2>Controller con Repeater</h2>
+                    <pre><code data-trim ng-non-bindable>
+&lt;div ng-controller=&quot;ItemsCtrl&quot;&gt;
+    &lt;button ng-click=&quot;addItem()&quot;&gt;Add Item&lt;/button&gt;
+    &lt;table&gt;
+        &lt;tr ng-repeat=&quot;item in items&quot;&gt;
+            &lt;td&gt;{{item}}&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+                    </code></pre>
+                    <pre><code data-trim ng-non-bindable>
+&lt;script&gt;
+    function ItemsCtrl($scope) {
+        $scope.count = 0;
+        $scope.items = [];
+        $scope.addItem = function () {
+            $scope.count++;
+            $scope.items.push(&#39;Nuevo Item &#39; + $scope.count);
+        }
+    }
+&lt;/script&gt;
+                    </code></pre>
+                    <div ng-controller="ItemsCtrl" class="fragment highlight-red">
+                        <button ng-click="addItem()">Add Item</button>
+                        <table>
+                            <tr ng-repeat="item in items">
+                                <td>{{item}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <script>
+                        function ItemsCtrl($scope) {
+                            $scope.count = 0;
+                            $scope.items = [];
+                            $scope.addItem = function () {
+                                $scope.count++;
+                                $scope.items.push('Nuevo Item ' + $scope.count);
+                            }
+                        }
+                    </script>
+                    <aside class="notes">
+                        El Scope es representa el contexto de ejecución.
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Los componentes de AngularJS</h2>
+                </section>
+                <section>
+                    <h2>Expressions</h2>
+                    <ul>
+                        <li>Snippets de código JavaScript utilizada para Bindings</li>
+                    </ul>
+                    <pre><code data-trim ng-non-bindable>
+{{ expression }}
+                    </code></pre>
+                    <pre><code class="good-code" data-trim ng-non-bindable>
+{{ customer.name }}
+                    </code></pre>
+                    <pre><code class="good-code" data-trim ng-non-bindable>
+{{ 2+2 }}
+                    </code></pre>
+                    <pre><code class="bad-code" data-trim ng-non-bindable>
+{{ Math.round(100*count/total) }}
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Controller</h2>
+                    <ul>
+                        <li>Utiliza un <code>$scope</code> para comunicar datos entre el Controller y la Vista</li>
+                        <li>El Modelo está dentro del <code>$scope</code></li>
+                    </ul>
+                    <pre><code data-trim ng-non-bindable>
+function TaskCtrl($scope){
+	$scope.tasks = [ 
+	    { title: 'Fix Bug #3457', status: 'Done' }, 
+	    { title: 'Add new Feature', status: 'Pending' } 	
+	]
+	$scope.addTask = function (task) {
+		$scope.tasks.push(task);
+	}
+}
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Filters</h2>
+                    <ul>
+                        <li>Modifica el Output antes del Render</li>
+                        <li>
+                            Se utiliza para
+                            <ul>
+                                <li>Modificar un formato</li>
+                                <li>Ordenar una lista</li>
+                                <li>Filtrar una lista</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <pre><code data-trim ng-non-bindable>
+&lt;h1&gt;{{ expression | filter }}&lt;/h1&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Filters</h2>
+                    <pre><code data-trim ng-non-bindable>
+Search: &lt;input ng-model=&quot;searchText&quot;&gt;
+&lt;table&gt;
+    &lt;tr&gt;&lt;th&gt;Title&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;/tr&gt;
+    &lt;tr ng-repeat=&quot;task in tasks | filter:searchText&quot;&gt;
+        &lt;td&gt;{{task.title}}&lt;/td&gt;
+        &lt;td&gt;{{task.status}}&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+                    </code></pre>
+                    <div ng-init="tasks = [{title:'Fix bug #3445', status:'done'},
+                             {title:'Fix bug #3446', status:'done'},
+                             {title:'Add new Feature', status:'pending'}]"></div>
+                    Search: <input ng-model="searchText">
+                    <hr />
+                    <table id="searchTextResults">
+                        <tr><th>Title</th><th>Status</th></tr>
+                        <tr ng-repeat="task in tasks | filter:searchText">
+                            <td>{{task.title}}</td>
+                            <td>{{task.status}}</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>Services</h2>
+                    <ul>
+                        <li>Donde está la lógica de la aplicación</li>
+                        <li>Estado de la aplicación</li>
+                        <li>Comunicación con el Backend</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Routing</h2>
+                </section>
+                <section>
+                    <h2>Directives</h2>
+                    <ul>
+                        <li>Es donde se hace manipulación del DOM</li>
+                        <li>Existen numerosas directivas nativas ng-*</li>
+                    </ul>
+                    <pre><code data-trim ng-non-bindable>
+&lt;h1&gt;{{custoner.name}}&lt;/h1&gt;
+                    </code></pre>
+                    <pre><code data-trim ng-non-bindable>
+&lt;h1 ng-bind=&quot;customer.name&quot;&gt;&lt;/h1&gt;
+                    </code></pre>
+                </section>
+            </section>
+
+            <section>
+                <h2>Links</h2>
+                <ul>
+                    <li><a href="http://goo.gl/bL9IoB">http://www.meetup.com/AngularJS-Buenos-Aires/</a></li>
+                    <li><a href="http://goo.gl/WdygrW">https://github.com/juanmanuelarias/angularjs-meetup</a></li>
+                    <li><a href="http://goo.gl/cQ3XVZ">@juanma_ari</a></li>
+                </ul>
+            </section>
+
+            <script src="lib/js/head.min.js"></script>
+            <script src="js/reveal.min.js"></script>
+
+            <script>
+                // Full list of configuration options available here:
+                // https://github.com/hakimel/reveal.js#configuration
+                Reveal.initialize({
+                    controls: true,
+                    progress: true,
+                    history: true,
+                    center: true,
+
+                    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                    // Optional libraries used to extend on reveal.js
+                    dependencies: [
+                        { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                        { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                        { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                        { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                        { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                        { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+                    ]
+                });
+
+            </script>
+            <script src="bower_components/angular/angular.min.js"></script>
+        </div>
+    </div>
+</body>
+</html>
