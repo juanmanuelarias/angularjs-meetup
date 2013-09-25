@@ -311,19 +311,18 @@ Search: &lt;input ng-model=&quot;searchText&quot;&gt;
     &lt;tr ng-repeat=&quot;task in tasks | filter:searchText&quot;&gt;
         &lt;td&gt;{{task.title}}&lt;/td&gt;
         &lt;td&gt;{{task.status}}&lt;/td&gt;
+        &lt;td&gt;{{task.date | date:'dd/MM/yy'}}&lt;/td&gt;
     &lt;/tr&gt;
 &lt;/table&gt;
                     </code></pre>
-                    <div ng-init="tasks = [{title:'Fix bug #3445', status:'done'},
-                             {title:'Fix bug #3446', status:'done'},
-                             {title:'Add new Feature', status:'pending'}]"></div>
                     Search: <input ng-model="searchText">
                     <hr />
-                    <table id="searchTextResults">
+                    <table ng-controller="TaskCtrl">
                         <tr><th>Title</th><th>Status</th></tr>
                         <tr ng-repeat="task in tasks | filter:searchText">
                             <td>{{task.title}}</td>
                             <td>{{task.status}}</td>
+                            <td>{{task.date | date:'dd/MM/yy'}}</td>
                         </tr>
                     </table>
                 </section>
@@ -391,6 +390,14 @@ Search: &lt;input ng-model=&quot;searchText&quot;&gt;
 
             </script>
             <script src="bower_components/angular/angular.min.js"></script>
+
+            <script>
+                function TaskCtrl($scope) {
+                    $scope.tasks = [{ title: 'Fix bug #3445', status: 'done', date: new Date() },
+                             { title: 'Fix bug #3446', status: 'done', date: new Date() },
+                             { title: 'Add new Feature', status: 'pending', date: new Date() }];
+                }
+            </script>
         </div>
     </div>
 </body>
