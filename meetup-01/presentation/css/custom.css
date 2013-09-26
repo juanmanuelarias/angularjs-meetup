@@ -5,3 +5,7 @@
 .bad-code{
     box-shadow: 0 0 6px rgba(255, 0, 0, 0.57) !important;
 }
+
+table{
+    border-spacing: 15px;
+}

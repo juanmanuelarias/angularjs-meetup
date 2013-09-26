@@ -60,7 +60,7 @@
                         </ul>
                     </li>
                     <li>MEAN Stack y otras tecnologías backend</li>
-                    <li>Seguridad - OAuth</li>
+                    <li>Seguridad</li>
                     <li>De la idea al Deploy</li>
                     <li>...</li>
                 </ol>
@@ -77,7 +77,6 @@
                         <li class="fragment">JavaScript puro</li>
                         <li class="fragment">JQuery</li>
                         <li class="fragment">Bindings</li>
-                        <li class="fragment">MVC</li>
                     </ol>
                 </section>
 
@@ -133,18 +132,48 @@
                     </aside>
                 </section>
 
-                <section data-background="#8c4738" data-background-transition="slide">
-                    <h2>Problemas comunes</h2>
-                    <ul>
-                        <li>Código Imperativo</li>
-                        <li>Manipulación del DOM mezclada con lógica de comportamiento</li>
-                        <li>Dificultad a la hora de testear UI</li>
-                        <li>Integración de múltiples librerías</li>
-                    </ul>
+                <section>
+                    <h2>¿Cuales son las Desventajas?</h2>
+                </section>
+
+                <section data-background="#8c4738" data-background-transition="slide" data-transition="linear">
+                    <h3>Código Imperativo</h3>
+                </section>
+
+                <section data-background="#8c4738" data-background-transition="slide" data-transition="linear">
+                    <h3>Manipulación del DOM mezclada con lógica de comportamiento</h3>
+                </section>
+
+                <section data-background="#8c4738" data-background-transition="slide" data-transition="linear">
+                    <h3>Dificultad a la hora de testear UI</h3>
+                </section>
+
+                <section data-background="#8c4738" data-background-transition="cube" data-transition="linear">
+                    <h3>Modelo de Negocio acoplado a librerías</h3>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>MVC</h2>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>¿Que es AngularJS?</h2>
                 </section>
 
                 <section>
-                    <h3>MVC</h3>
+                    <h3>Framework JavaScript Open Source</h3>
+                </section>
+
+                <section>
+                    <h3>Desarrollado por Google</h3>
+                </section>
+
+                <section>
+                    <h3>Aplica el patrón MVC</h3>
                     <pre><code data-trim ng-non-bindable>
 &lt;h1&gt;{{persona.nombre}}&lt;/h1&gt;
                     </code></pre>
@@ -158,25 +187,33 @@
             </section>
 
             <section>
-                <h2>¿Que es AngularJS?</h2>
-                <ul>
-                    <li>Framework JavaScript Open Source</li>
-                    <li>Aplica el patrón MVC</li>
-                    <li>Es desarrollado por Google</li>
-                </ul>
-            </section>
+                <section>
+                    <h2>¿Cuales son las Ventajas?</h2>
+                </section>
 
-            <section data-background="#4d7e65" data-background-transition="slide">
-                <h2>Principales ventajas</h2>
-                <ul>
-                    <li>Aplica Dependency Injection</li>
-                    <li>Facilita la construcción de SPA con el uso de rutas y bindings</li>
-                    <li>Permite desacoplar la manipulación del DOM de la lógica</li>
-                    <li>Extiende el vocabulario HTML</li>
-                    <li>Buenas prácticas de Inyección de Dependencias</li>
-                    <li>Facilidad de realizar Testing Unitario y E2E</li>
-                    <li>Los objetos JS no necesitan una estructura específica para Getters y Setters</li>
-                </ul>
+                <section data-background="#4d7e65" data-background-transition="slide" data-transition="linear">
+                    <h3>Aplica Dependency Injection</h3>
+                </section>
+
+                <section data-background="#4d7e65" data-background-transition="slide" data-transition="linear">
+                    <h3>Facilita la construcción de SPA con el uso de rutas y bindings</h3>
+                </section>
+
+                <section data-background="#4d7e65" data-background-transition="slide" data-transition="linear">
+                    <h3>Permite desacoplar la manipulación del DOM de la lógica</h3>
+                </section>
+
+                <section data-background="#4d7e65" data-background-transition="slide" data-transition="linear">
+                    <h3>Extiende el vocabulario HTML</h3>
+                </section>
+
+                <section data-background="#4d7e65" data-background-transition="slide" data-transition="linear">
+                    <h3>Facilidad de realizar Testing Unitario y E2E</h3>
+                </section>
+
+                <section data-background="#4d7e65" data-background-transition="cube" data-transition="linear">
+                    <h3>Los objetos JS no necesitan una estructura específica de Getters y Setters</h3>
+                </section>
             </section>
 
             <section>
@@ -220,7 +257,13 @@
     }
 &lt;/script&gt;
                     </code></pre>
-                    <div ng-controller="ItemsCtrl" class="fragment highlight-red">
+                    <aside class="notes">
+                        El Scope es representa el contexto de ejecución.
+                    </aside>
+                </section>
+                <section>
+                    <h2>Controller con Repeater</h2>
+                    <div ng-controller="ItemsCtrl">
                         <button ng-click="addItem()">Add Item</button>
                         <table>
                             <tr ng-repeat="item in items">
@@ -228,19 +271,6 @@
                             </tr>
                         </table>
                     </div>
-                    <script>
-                        function ItemsCtrl($scope) {
-                            $scope.count = 0;
-                            $scope.items = [];
-                            $scope.addItem = function () {
-                                $scope.count++;
-                                $scope.items.push('Nuevo Item ' + $scope.count);
-                            }
-                        }
-                    </script>
-                    <aside class="notes">
-                        El Scope es representa el contexto de ejecución.
-                    </aside>
                 </section>
             </section>
 
@@ -318,7 +348,7 @@ Search: &lt;input ng-model=&quot;searchText&quot;&gt;
                     Search: <input ng-model="searchText">
                     <hr />
                     <table ng-controller="TaskCtrl">
-                        <tr><th>Title</th><th>Status</th></tr>
+                        <tr><th>Title</th><th>Status</th><th>Date</th></tr>
                         <tr ng-repeat="task in tasks | filter:searchText">
                             <td>{{task.title}}</td>
                             <td>{{task.status}}</td>
@@ -396,6 +426,15 @@ Search: &lt;input ng-model=&quot;searchText&quot;&gt;
                     $scope.tasks = [{ title: 'Fix bug #3445', status: 'done', date: new Date() },
                              { title: 'Fix bug #3446', status: 'done', date: new Date() },
                              { title: 'Add new Feature', status: 'pending', date: new Date() }];
+                }
+
+                function ItemsCtrl($scope) {
+                    $scope.count = 0;
+                    $scope.items = [];
+                    $scope.addItem = function () {
+                        $scope.count++;
+                        $scope.items.push('Nuevo Item ' + $scope.count);
+                    }
                 }
             </script>
         </div>
