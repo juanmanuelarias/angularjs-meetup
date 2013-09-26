@@ -17,13 +17,14 @@
   ],
   "dependencies": {
     "json3": "~3.2.4",
-    "jquery": "~1.9.1",
+    "jquery": "~2.0.3",
     "es5-shim": "~2.0.8",
     "angular": "v1.2.0-rc.2",
     "angular-resource": "v1.2.0-rc.2",
     "angular-cookies": "v1.2.0-rc.2",
     "angular-sanitize": "v1.2.0-rc.2",
-    "angular-route": "v1.2.0-rc.2"
+    "angular-route": "v1.2.0-rc.2",
+    "jquery-ui": "~1.10.3"
   },
   "devDependencies": {
     "angular-mocks": "v1.2.0-rc.2",

@@ -456,12 +456,22 @@ var app = angular.module('myApp', [])
                         <li>Utilizado para elementos Custom</li>
                         <li>Manipulación del DOM</li>
                         <li>Eventos Custom</li>
+                        <li>Permite crear nuestro propio DSL</li>
                     </ul>
                     <pre><code data-trim ng-non-bindable>
-&lt;h1&gt;{{custoner.name}}&lt;/h1&gt;
+myApp.directive('taskBox', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/taskBox.html'
+    }
+});
                     </code></pre>
                     <pre><code data-trim ng-non-bindable>
-&lt;h1 ng-bind=&quot;customer.name&quot;&gt;&lt;/h1&gt;
+&lt;body&gt;
+    ...
+    &lt;taskBox /&gt;
+    ...
+&lt;/body&gt;
                     </code></pre>
                 </section>
             </section>
