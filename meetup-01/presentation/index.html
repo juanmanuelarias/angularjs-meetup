@@ -427,12 +427,35 @@ myApp.factory('taskData', function () {
                 </section>
                 <section>
                     <h2>Routing</h2>
+                    <ul>
+                        <li>Permite hacer SPA</li>
+                        <li>Navegación con History</li>
+                        <li>Utiliza el # en las rutas o nada si es HTML5</li>
+                    </ul>
+                    <pre><code data-trim ng-non-bindable>
+&lt;body&gt;
+    &lt;ng-view&gt;&lt;/ng-view&gt;
+&lt;/body&gt;
+                    </code></pre>
+                    <pre><code data-trim ng-non-bindable>
+var app = angular.module('myApp', [])
+    .config(function($routeProvider){
+        $routeProvider.when('/tasks',{
+            templateUrl: 'views/tasks.html',
+            controller: 'TaskCtrl'
+        }
+    });
+                    </code></pre>
+                    <aside class="notes">
+                        En modo HTML5, el server tiene que responder a todas las rutas para que angular pueda cargarla y operar sobre ella.
+                    </aside>
                 </section>
                 <section>
                     <h2>Directives</h2>
                     <ul>
-                        <li>Es donde se hace manipulación del DOM</li>
-                        <li>Existen numerosas directivas nativas ng-*</li>
+                        <li>Utilizado para elementos Custom</li>
+                        <li>Manipulación del DOM</li>
+                        <li>Eventos Custom</li>
                     </ul>
                     <pre><code data-trim ng-non-bindable>
 &lt;h1&gt;{{custoner.name}}&lt;/h1&gt;
