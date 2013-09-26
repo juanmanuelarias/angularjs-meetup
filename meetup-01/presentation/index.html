@@ -30,7 +30,7 @@
     <![endif]-->
 </head>
 
-<body ng-app>
+<body ng-app="myApp">
     <div class="reveal">
         <div class="slides">
             <section>
@@ -296,6 +296,11 @@
 {{ Math.round(100*count/total) }}
                     </code></pre>
                 </section>
+
+                <section>
+                    <h2>Modules</h2>
+                </section>
+
                 <section>
                     <h2>Controller</h2>
                     <ul>
@@ -360,9 +365,44 @@ Search: &lt;input ng-model=&quot;searchText&quot;&gt;
                 <section>
                     <h2>Services</h2>
                     <ul>
-                        <li>Donde está la lógica de la aplicación</li>
-                        <li>Estado de la aplicación</li>
-                        <li>Comunicación con el Backend</li>
+                        <li>Objetos con lógica de la aplicación</li>
+                        <li>Suele comunicarse con el Backend</li>
+                        <li>Objetos reutilizables</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Services</h2>                
+                    <pre><code data-trim ng-non-bindable>
+myApp.controller('TaskCtrl', function ($scope, taskData) {
+    $scope.tasks = taskData.tasks;
+    $scope.add = function (task) {
+        taskData.add(task);
+    }
+});
+                    </code></pre>
+                    <pre><code data-trim ng-non-bindable>
+myApp.factory('taskData', function () {
+    return {
+        tasks : [
+            { title: 'Fix bug #3445', status: 'done', ... },
+            { title: 'Fix bug #3446', status: 'done', ... },
+            { title: 'Add new Feature', status: 'pending', ... }],
+        add: function (task) {
+            this.tasks.push(task);
+        }
+    }
+});
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Services nativos de AngularJS</h2>
+                    <ul>
+                        <li>$http</li>
+                        <li>$q</li>
+                        <li>$resource</li>
+                        <li>$cookieStore</li>
+                        <li>$window</li>
+                        <li>... y muchos más...</li>
                     </ul>
                 </section>
                 <section>
@@ -420,13 +460,11 @@ Search: &lt;input ng-model=&quot;searchText&quot;&gt;
 
             </script>
             <script src="bower_components/angular/angular.min.js"></script>
-
+            <script src="app/js/app.js"></script>
+            <script src="app/js/controllers/TaskCtrl.js"></script>
+            <script src="app/js/services/taskData.js"></script>
             <script>
-                function TaskCtrl($scope) {
-                    $scope.tasks = [{ title: 'Fix bug #3445', status: 'done', date: new Date() },
-                             { title: 'Fix bug #3446', status: 'done', date: new Date() },
-                             { title: 'Add new Feature', status: 'pending', date: new Date() }];
-                }
+                
 
                 function ItemsCtrl($scope) {
                     $scope.count = 0;
