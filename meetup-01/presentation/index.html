@@ -299,6 +299,18 @@
 
                 <section>
                     <h2>Modules</h2>
+                    <p>Permite segmentar la Aplicación</p>
+                    <pre><code data-trim ng-non-bindable>
+&lt;body ng-app=&quot;myApp&quot;&gt;
+    ...
+&lt;/body&gt;
+                    </code></pre>
+                    <pre><code data-trim ng-non-bindable>
+var myApp = angular.module('myApp', []);
+                    </code></pre>
+                    <pre><code data-trim ng-non-bindable>
+var myApp = angular.module('myApp', ['myApp.controllers', ...]);
+                    </code></pre>
                 </section>
 
                 <section>
