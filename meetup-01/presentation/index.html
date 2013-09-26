@@ -394,6 +394,26 @@ myApp.factory('taskData', function () {
 });
                     </code></pre>
                 </section>
+                
+                <section>
+                    <h2>Service</h2>
+                    <div ng-controller="TaskCtrl">
+                        <form>
+                            Title: <input type="text" ng-model="task.title" />
+                            Status: <input type="text" ng-model="task.status" />
+                            <button ng-click="add(task)">Add</button>
+                        </form>
+                        <table>
+                            <tr><th>Title</th><th>Status</th><th>Date</th></tr>
+                            <tr ng-repeat="task in tasks | filter:searchText">
+                                <td>{{task.title}}</td>
+                                <td>{{task.status}}</td>
+                                <td>{{task.date | date:'dd/MM/yy'}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+
                 <section>
                     <h2>Services nativos de AngularJS</h2>
                     <ul>
