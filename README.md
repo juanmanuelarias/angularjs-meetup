@@ -1,7 +1,10 @@
 AngularJS Buenos Aires Meetup
 ================
-## Introduccion
+## Introducción
 Bienvenidos! En este repositorio podras encontrar las presentaciones y ejemplos utilizados en los meetups de AngularJS Buenos Aires. 
+
+## Meetup
+Nuestro meetup http://www.meetup.com/AngularJS-Buenos-Aires/
 
 ## Slides
 Para poder visualizar los slides, es necesario:
@@ -17,7 +20,7 @@ npm install
 ```
 bower install
 ```
-5. Listo! Para levantar el server y visualizar la presentacion, solo tienes que ejecutar:
+5. Listo! Para levantar el server y visualizar la presentación, solo tienes que ejecutar:
 ```
 grunt serve
 ```
