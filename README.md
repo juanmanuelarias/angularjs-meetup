@@ -14,7 +14,8 @@ Nuestro **meetup** es para todos aquellos interesados en **AngularJS**, donde po
 
 ### 1. Primer Meetup AngularJS Buenos Aires
 Este fue nuestro primer encuentro, donde empezamos a formar nuestra comunidad.
-Podrás encontrar más información en https://github.com/juanmanuelarias/angularjs-meetup/tree/master/meetup-01/presentation
+Podrás encontrar más información en
+http://www.meetup.com/AngularJS-Buenos-Aires/events/140762382/
 
 #### Slides
 https://github.com/juanmanuelarias/angularjs-meetup/tree/master/meetup-01/presentation
