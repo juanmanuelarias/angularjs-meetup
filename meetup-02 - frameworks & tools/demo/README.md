@@ -10,7 +10,7 @@ https://www.ruby-lang.org/es/
 
 http://compass-style.org/install/
 
-## Instalación de Yeoman
+## 1. Instalación de Yeoman
 1. Para instalar Yeoman, necesitamos ejecutar el comando:
 
 ```
@@ -23,7 +23,7 @@ npm install -g yo
 npm install -g generator-angular
 ```
 
-## Generación de una App AngularJS
+## 2. Generación de una App AngularJS
 1. Para generar una App con AngularJS, debemos ejecutar el comando:
 
 ```
@@ -54,12 +54,70 @@ grunt serve
 
 All Done! Ya tenemos nuestra App AngularJS funcionando!
 
-## Creación de una Vista
+## 3. Creación de una Vista
 
-## Creación de un Controller
+1. Creamos una Vista con Yeoman
 
-## Realizando un Test
+```
+yo angular:view user
+```
 
-## Dependencias con Bower
+Este comando nos creará una vista **user.html** ubicada en *app/views/user.html*.
 
-## El BUILD
+2. Abrimos la Vista, y la editamos para que se vea de la siguiente manera:
+
+```
+<p>This is the user view.</p>
+<div ng-controller="UserCtrl">
+	<panel title="User Properties">
+		My name is: {{name}}
+	</panel>
+</div>
+```
+
+## 4. Creación de un Controller
+
+1. Creamos un Controller con Yeoman
+```
+yo angular:controller **user**
+```
+Este comando nos creará el controller **UserCtrl** ubicado en *app/scripts/controllers/user.js* y lo agregará al index.html automáticamente.
+
+2. Abrimos el controller, y lo editamos para que se vea de la siguiente manera:
+
+```
+angular.module('meetupApp')
+  .controller('UserCtrl', function ($scope) {
+    $scope.name = 'juan';
+  });
+```
+
+## 5. Realizando un Test
+
+Una vez creado el Controller, vamos a verificar que la misma esté funcionando correctamente, para ello vamos a crear un Test y ejecutarlo con Grunt.
+
+1. Abrimos el archivo *test/spec/controllers/user.js*
+
+2. Creamos/Editamos un test para validar que la variable *name* tenga el valor "juan" (es un test muy sencillo, pero sirve para el propósito de este Workshop).
+
+```
+it('should name always be juan', function () {
+	expect(scope.name).toBe('juan');
+});
+```
+
+3. Ahora estamos en condiciones de ejecutar el Test. ¿Como? Muy fácil, solamente debemos indicarle a Grunt que ahora queremos ejectuar los Tests de nuestra App.
+
+```
+grunt test
+```
+
+*Nota: Posiblemente veamos un error al ejecutar el test con Grunt, ya que no puede encontrar el ejecutable de Google Chrome. En este caso, agregar la siguiente variable de entorno*
+
+```
+CHROME_BIN = <*path_to_google_chrome*>
+```
+
+## 6. Dependencias con Bower
+
+## 7. El BUILD
