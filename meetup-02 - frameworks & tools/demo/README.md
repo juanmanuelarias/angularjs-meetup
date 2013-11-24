@@ -5,7 +5,9 @@ En este Lab vamos a instalar y utilizar Yeoman para la generación de una App co
 Para poder utilizar Yeoman, necesitamos tener instalado NodeJS http://nodejs.org/
 
 Y en el caso de utilizar SASS, necesitaremos instalar Ruby y Compass
+
 https://www.ruby-lang.org/es/
+
 http://compass-style.org/install/
 
 ## Instalación de Yeoman
@@ -26,7 +28,9 @@ yo angular
 Al ejecutarlo, Yeoman nos hará una serie de preguntas sobre que componentes queremos utilizar para la aplicación a generarse. En nuestro caso utilizaremos Twitter Bootstrap SCSS:
 ```
 [?] Would you like to include Twitter Bootstrap? (Y/n) Y
+
 [?] Would you like to use the SCSS version of Twitter Bootstrap with the Compass CSS Authoring Framework? (Y/n) Y
+
 [?] Which modules would you like to include? (Press <space> to select)
  [X] angular-resource.js
  [X] angular-cookies.js
