@@ -79,7 +79,7 @@ Este comando nos creará una vista **user.html** ubicada en *app/views/user.html
 
 1. Creamos un Controller con Yeoman
 ```
-yo angular:controller **user**
+yo angular:controller user
 ```
 Este comando nos creará el controller **UserCtrl** ubicado en *app/scripts/controllers/user.js* y lo agregará al index.html automáticamente.
 
@@ -120,4 +120,30 @@ CHROME_BIN = <*path_to_google_chrome*>
 
 ## 6. Dependencias con Bower
 
+Bower es un administrador de paquetes, el cual nos permite poder instalar y actualizar los paquetes junto a sus dependencias de forma automática.
+
+Por ejemplo, para descargar **angular-ui** en nuestro proyecto, solamente debemos ingresar el comando:
+
+```
+bower install angular-ui --save
+```
+
+El parámetro **--save** se encargará actualizar el archivo **bower.json** con la nueva dependencia. De esta forma, cuando alguien baje del repositorio nuestro proyecto, solamente deberá ejecutar
+
+```
+bower install
+```
+
+y bower se encargará de descargar todas las dependencias encontradas en el archivo bower.json.
+
 ## 7. El BUILD
+
+Ya tenemos todo listo para empaquetar y distribuir nuestra App. Una vez más, le diremos a Grunt que se encargue de esta tarea por nosotros y lo haremos de la siguiente forma:
+
+```
+grunt build
+```
+
+Ese comando ejecutará una serie de tareas que fueron definidas automáticamente cuando creamos nuestro proyecto con Yeoman -definidas en el archivo **Gruntfile.js**, como por ejemplo *uglify, autoprefixer, ngmin, etc.*.
+
+Una vez terminado el build, se creará una carpeta **dist** donde encontraremos el resultado final de la compilación!
