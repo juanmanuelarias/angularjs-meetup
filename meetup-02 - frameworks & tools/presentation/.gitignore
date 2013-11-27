@@ -4,6 +4,3 @@ log/*.log
 tmp/**
 node_modules/
 .sass-cache
-bower_components/
-*.sln
-*.suo
