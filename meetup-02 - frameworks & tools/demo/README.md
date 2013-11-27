@@ -136,7 +136,7 @@ bower install
 
 y bower se encargará de descargar todas las dependencias encontradas en el archivo bower.json.
 
-## 7. El BUILD
+## 7. El Build
 
 Ya tenemos todo listo para empaquetar y distribuir nuestra App. Una vez más, le diremos a Grunt que se encargue de esta tarea por nosotros y lo haremos de la siguiente forma:
 
@@ -147,3 +147,70 @@ grunt build
 Ese comando ejecutará una serie de tareas que fueron definidas automáticamente cuando creamos nuestro proyecto con Yeoman -definidas en el archivo **Gruntfile.js**, como por ejemplo *uglify, autoprefixer, ngmin, etc.*.
 
 Una vez terminado el build, se creará una carpeta **dist** donde encontraremos el resultado final de la compilación!
+
+## 8. El Deploy
+No podíamos terminar este Lab, sin hacer un deploy a producción y para ello, utlizaremos la plataforma [Heroku](https://www.heroku.com/).
+
+1. Lo primero que debemos hacer, es instalar el generador de heroku.
+
+```
+npm install -g generator-heroku
+```
+
+2. Luego, en la carpeta "root" de Yeoman (donde se encuentra Gruntfile.js), ejecutar el comando:
+
+```
+yo heroku
+```
+
+Y cuando nos pregunte si queremos un repositorio separado para "dist", le diremos que sí:
+
+```
+[?] Do you want a separate git repository in dist/? Yes
+```
+
+Si todo salió bien, vamos a ver en el output lo siguiente:
+
+```
+Please add this copy task rule to your Gruntfile:
+    copy: {
+        dist: {
+            files: [{
+                expand: true,
+                dest: '<%= yeoman.dist %>',
+                cwd: 'heroku',
+                src: '*',
+                rename: function (dest, src) {
+                    var path = require('path');
+                    if (src === 'distpackage.json') {
+                        return path.join(dest, 'package.json');
+                    }
+                    return path.join(dest, src);
+                }
+            }]
+        }
+    }
+
+You're all set! Now go to dist and run
+        heroku apps:create
+```
+
+Ahora solo debemos copiar el contenido generado en el comando anterior, y agregarlo a nuestro **Gruntfile.js** en la *copy* task.
+
+3. Ir a la carpeta *dist*
+
+```
+cd dist
+```
+
+4. Creamos nuestra app heroku:
+
+```
+heroku apps:create
+```
+
+5. Y por último, subimos nuestra aplicación a la nube!
+
+```
+git push heroku master
+```
