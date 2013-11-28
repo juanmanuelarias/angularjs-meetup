@@ -209,8 +209,19 @@ cd dist
 heroku apps:create
 ```
 
+*Nota: Si el repo ya existe en heroku, entonces no hay que crear una nueva App, sino que tenemos que agregar el repo de heroku y hacer un pull en la carpeta **dist***
+
+```
+git remote add heroku git@heroku.com:project-name.git
+git pull heroku master
+```
+
 5. Y por último, subimos nuestra aplicación a la nube!
 
 ```
+git add .
+git commit -m "moving to the cloud"
 git push heroku master
 ```
+
+Felicitaciones! Creaste una App AngularJS de punta a punta!
