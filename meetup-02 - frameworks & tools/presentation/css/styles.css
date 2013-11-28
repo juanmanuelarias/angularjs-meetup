@@ -1,0 +1,10 @@
+.bg-white {
+	background-color: rgba(255, 255, 255, 0.66);;
+	padding: 50px 0 !important;
+}
+
+.black-title {
+	color: rgb(51, 51, 51) !important;
+	text-shadow: 3px 3px rgb(37, 134, 199) !important;
+	text-transform: none !important;
+}
