@@ -10,7 +10,7 @@ angular.module('meetupApp', [
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'TodoCtrl'
       })
       .when('/user', {
         templateUrl: 'views/user.html',
