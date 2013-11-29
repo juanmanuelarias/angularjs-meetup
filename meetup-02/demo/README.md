@@ -133,11 +133,11 @@ Una vez creado el Controller de Items, vamos a verificar que la misma esté func
 
 2. Agregamos un test para validar el método addItems y removeItems respectivamente. Como por ejemplo:
 
+```
 'use strict';
 
 describe('Controller: ItemCtrl', function () {
 
-```
   // load the controller's module
   beforeEach(module('meetupApp'));
 
