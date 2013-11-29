@@ -10,11 +10,11 @@ angular.module('meetupApp', [
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'TodoCtrl'
+        controller: 'MainCtrl'
       })
-      .when('/user', {
-        templateUrl: 'views/user.html',
-        controller: 'UserCtrl'
+      .when('/items', {
+        templateUrl: 'views/items.html',
+        controller: 'ItemCtrl'
       })
       .otherwise({
         redirectTo: '/'

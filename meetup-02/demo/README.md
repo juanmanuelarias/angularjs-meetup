@@ -27,7 +27,7 @@ npm install -g generator-angular
 1. Para generar una App con AngularJS, debemos ejecutar el comando:
 
 ```
-yo angular
+yo angular meetup
 ```
 
 Al ejecutarlo, Yeoman nos hará una serie de preguntas sobre que componentes queremos utilizar para la aplicación a generarse. En nuestro caso utilizaremos Twitter Bootstrap SCSS:
@@ -59,19 +59,23 @@ All Done! Ya tenemos nuestra App AngularJS funcionando!
 1. Creamos una Vista con Yeoman
 
 ```
-yo angular:view user
+yo angular:view items
 ```
 
-Este comando nos creará una vista **user.html** ubicada en *app/views/user.html*.
+Este comando nos creará una vista **items.html** ubicada en *app/views/items.html*.
 
 2. Abrimos la Vista, y la editamos para que se vea de la siguiente manera:
 
 ```
-<p>This is the user view.</p>
-<div ng-controller="UserCtrl">
-	<panel title="User Properties">
-		My name is: {{name}}
-	</panel>
+<div>
+    <table ng-repeat="item in items">
+        <tr>
+            <td>{{item}}</td>
+            <td><button class="btn btn-danger btn-xs" ng-click="removeItem($index)">X</button></td>
+        </tr>
+    </table>
+    <input type="text" ng-model="item">
+    <button class="btn btn-primary" ng-click="addItem(item)">Add</button>
 </div>
 ```
 
@@ -79,30 +83,88 @@ Este comando nos creará una vista **user.html** ubicada en *app/views/user.html
 
 1. Creamos un Controller con Yeoman
 ```
-yo angular:controller user
+yo angular:controller item
 ```
-Este comando nos creará el controller **UserCtrl** ubicado en *app/scripts/controllers/user.js* y lo agregará al index.html automáticamente.
+Este comando nos creará el controller **ItemCtrl** ubicado en *app/scripts/controllers/item.js* y lo agregará al index.html automáticamente.
 
 2. Abrimos el controller, y lo editamos para que se vea de la siguiente manera:
 
 ```
 angular.module('meetupApp')
-  .controller('UserCtrl', function ($scope) {
-    $scope.name = 'juan';
+.controller('ItemCtrl', function ($scope) {
+    $scope.items = [];
+
+    $scope.addItem = function (item) {
+        $scope.items.push(item);
+        $scope.item = '';
+    };
+
+    $scope.removeItem = function (index) {
+        $scope.items.splice(index, 1);
+    };
+});
+```
+## 6. Actualizacion de la Vista Principal
+
+1. Modificar la vista *main.html* para agregar un link a nuestra vista *items.html*
+
+```
+<ul class="nav nav-pills pull-right">
+    <li class="active"><a ng-href="#">Home</a></li>
+    <li><a ng-href="#/items">Items</a></li>
+    <li><a ng-href="#">Contact</a></li>
+</ul>
+```
+
+2. Luego agregar la ruta en nuestro archivo *app.js*
+
+```
+.when('/items', {
+        templateUrl: 'views/items.html',
+        controller: 'ItemCtrl'
+      })
+```
+
+## 6. Realizando un Test
+
+Una vez creado el Controller de Items, vamos a verificar que la misma esté funcionando correctamente. Para ello vamos a crear un Test y ejecutarlo con Grunt.
+
+1. Abrimos el archivo *test/spec/controllers/item.js*
+
+2. Agregamos un test para validar el método addItems y removeItems respectivamente. Como por ejemplo:
+
+'use strict';
+
+describe('Controller: ItemCtrl', function () {
+
+```
+  // load the controller's module
+  beforeEach(module('meetupApp'));
+
+  var ItemCtrl,
+    scope;
+
+  // Initialize the controller and a mock scope
+  beforeEach(inject(function ($controller, $rootScope) {
+    scope = $rootScope.$new();
+    ItemCtrl = $controller('ItemCtrl', {
+      $scope: scope
+    });
+  }));
+
+  it('should add items to scope', function () {
+    scope.addItem('Item 1');
+    scope.addItem('Item 2');
+    scope.addItem('Item 3');
+    expect(scope.items.length).toBe(3);
   });
-```
 
-## 5. Realizando un Test
+  it('should remove items from scope', function () {
+    scope.items = ['Item 1', 'Item 2', 'Item 3'];
+    scope.removeItem(1);
+    expect(scope.items.length).toBe(2);
+  });
 
-Una vez creado el Controller, vamos a verificar que la misma esté funcionando correctamente, para ello vamos a crear un Test y ejecutarlo con Grunt.
-
-1. Abrimos el archivo *test/spec/controllers/user.js*
-
-2. Creamos/Editamos un test para validar que la variable *name* tenga el valor "juan" (es un test muy sencillo, pero sirve para el propósito de este Workshop).
-
-```
-it('should name always be juan', function () {
-	expect(scope.name).toBe('juan');
 });
 ```
 
@@ -112,13 +174,19 @@ it('should name always be juan', function () {
 grunt test
 ```
 
+Si los Test están funcionando correctamente, deberíamos ver el mensaje:
+
+```
+Chrome 33.0.1712 (Windows): Executed N of M SUCCESS (0.33 secs / 0.042 secs)
+```
+
 *Nota: Posiblemente veamos un error al ejecutar el test con Grunt, ya que no puede encontrar el ejecutable de Google Chrome. En este caso, agregar la siguiente variable de entorno*
 
 ```
 CHROME_BIN = <*path_to_google_chrome*>
 ```
 
-## 6. Dependencias con Bower
+## 7. Dependencias con Bower
 
 Bower es un administrador de paquetes, el cual nos permite poder instalar y actualizar los paquetes junto a sus dependencias de forma automática.
 
@@ -136,7 +204,7 @@ bower install
 
 y bower se encargará de descargar todas las dependencias encontradas en el archivo bower.json.
 
-## 7. El Build
+## 8. El Build
 
 Ya tenemos todo listo para empaquetar y distribuir nuestra App. Una vez más, le diremos a Grunt que se encargue de esta tarea por nosotros y lo haremos de la siguiente forma:
 
@@ -148,7 +216,7 @@ Ese comando ejecutará una serie de tareas que fueron definidas automáticamente
 
 Una vez terminado el build, se creará una carpeta **dist** donde encontraremos el resultado final de la compilación!
 
-## 8. El Deploy
+## 9. El Deploy
 No podíamos terminar este Lab, sin hacer un deploy a producción y para ello, utlizaremos la plataforma [Heroku](https://www.heroku.com/).
 
 1. Lo primero que debemos hacer, es instalar el generador de heroku.
